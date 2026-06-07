@@ -5,6 +5,12 @@ export declare const loginschema: {
         password: z.ZodString;
     }, z.core.$strict>;
 };
+export declare const confirmEmailschema: {
+    body: z.ZodObject<{
+        email: z.ZodEmail;
+        otp: z.ZodString;
+    }, z.core.$strict>;
+};
 export declare const signUpschema: {
     body: z.ZodObject<{
         email: z.ZodEmail;

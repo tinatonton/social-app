@@ -55,6 +55,7 @@ export const generalFields={
         password: z.string({ error: 'password is required' })
           .min(6, { error: 'password must be at least 6 characters long' }),
      gender: z.enum(['male', 'female'], { error: 'gender must be either male or female' }) ,
+     otp:z.string().regex(/^\d{6}$/)
 
 }
 

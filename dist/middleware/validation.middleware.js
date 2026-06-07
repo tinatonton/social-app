@@ -40,4 +40,5 @@ exports.generalFields = {
     password: zod_1.z.string({ error: 'password is required' })
         .min(6, { error: 'password must be at least 6 characters long' }),
     gender: zod_1.z.enum(['male', 'female'], { error: 'gender must be either male or female' }),
+    otp: zod_1.z.string().regex(/^\d{6}$/)
 };

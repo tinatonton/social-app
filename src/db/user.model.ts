@@ -1,6 +1,7 @@
 import { HydratedDocument, Schema}from "mongoose";
 import mongoose from "mongoose";
 import{GenderEnum, RoleEnum} from "../utils/enums/auth.enum";
+import { date } from "zod";
 
 
 export interface IUser{
@@ -18,6 +19,7 @@ export interface IUser{
     role?:RoleEnum;
     createdAt:Date;
     updatedAt?:Date;
+    confirmedAt:Date
 }
 
 export const userSchema=new Schema<IUser>(
@@ -33,6 +35,7 @@ export const userSchema=new Schema<IUser>(
     address:{type:String},
     gender:{type:String,enum:Object.values(GenderEnum),default:GenderEnum.MALE},
     role:{type:String,enum:Object.values(RoleEnum),default:RoleEnum.USER},
+    
     },
     {timestamps:true,
         toJSON:{virtuals:true},

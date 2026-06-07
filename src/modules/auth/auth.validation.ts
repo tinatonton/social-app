@@ -7,6 +7,12 @@ export const loginschema = {
     password: generalFields.password,
   })
 };
+export const confirmEmailschema = {
+  body: z.strictObject({
+    email: generalFields.email,
+    otp: generalFields.otp,
+  })
+};
 
 export const signUpschema = {
   body: loginschema.body.extend({

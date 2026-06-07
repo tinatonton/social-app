@@ -13,5 +13,6 @@ export declare const generalFields: {
         male: "male";
         female: "female";
     }>;
+    otp: z.ZodString;
 };
 export {};

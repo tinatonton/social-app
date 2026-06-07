@@ -16,6 +16,7 @@ export interface IUser {
     role?: RoleEnum;
     createdAt: Date;
     updatedAt?: Date;
+    confirmedAt: Date;
 }
 export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, any, any, any, IUser>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, IUser, mongoose.Document<unknown, {}, IUser, {
     id: string;
@@ -144,6 +145,15 @@ export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, a
         id: string;
     }>;
     updatedAt?: mongoose.SchemaDefinitionProperty<Date | undefined, IUser, mongoose.Document<unknown, {}, IUser, {
+        id: string;
+    }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
+        _id: mongoose.Types.ObjectId;
+    } & {
+        __v: number;
+    }, "id"> & {
+        id: string;
+    }>;
+    confirmedAt?: mongoose.SchemaDefinitionProperty<Date, IUser, mongoose.Document<unknown, {}, IUser, {
         id: string;
     }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
         _id: mongoose.Types.ObjectId;
