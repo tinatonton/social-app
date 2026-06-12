@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { generalFields } from '../../middleware/validation.middleware';
+import { logOutTypeEnum } from '../../utils/enums/auth.enum';
 
 export const loginschema = {
   body: z.strictObject({
@@ -11,6 +12,13 @@ export const confirmEmailschema = {
   body: z.strictObject({
     email: generalFields.email,
     otp: generalFields.otp,
+  })
+};
+
+
+export const logOutschema = {
+  body: z.strictObject({
+    flag:z.enum(logOutTypeEnum)
   })
 };
 

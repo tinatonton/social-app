@@ -27,5 +27,8 @@ class DatabaseRepository {
     async updateOne({ filter, update, options }) {
         return await this.model.updateOne(filter, { ...update, $inc: { _v: 1 } }, options);
     }
+    async insertMany({ data, }) {
+        return await this.model.create(data);
+    }
 }
 exports.DatabaseRepository = DatabaseRepository;

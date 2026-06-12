@@ -1,4 +1,4 @@
-import { Model, ProjectionType, QueryFilter, QueryOptions, CreateOptions, HydratedDocument, UpdateQuery, MongooseUpdateQueryOptions, UpdateWriteOpResult } from "mongoose";
+import { Model, ProjectionType, QueryFilter, QueryOptions, CreateOptions, HydratedDocument, UpdateQuery, MongooseUpdateQueryOptions, UpdateWriteOpResult, AnyKeys } from "mongoose";
 export declare abstract class DatabaseRepository<TDocument> {
     protected readonly model: Model<TDocument>;
     constructor(model: Model<TDocument>);
@@ -25,4 +25,9 @@ export declare abstract class DatabaseRepository<TDocument> {
         update: UpdateQuery<TDocument>;
         options: MongooseUpdateQueryOptions<TDocument> | null;
     }): Promise<UpdateWriteOpResult>;
+    insertMany({ data, }: {
+        data: AnyKeys<TDocument>[];
+    }): Promise<import("mongoose").IfAny<TDocument, any, import("mongoose").Document<unknown, {}, TDocument, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").Require_id<TDocument> & {
+        __v: number;
+    } & import("mongoose").AddDefaultId<TDocument, {}, import("mongoose").DefaultSchemaOptions>>>;
 }

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { logOutTypeEnum } from '../../utils/enums/auth.enum';
 export declare const loginschema: {
     body: z.ZodObject<{
         email: z.ZodEmail;
@@ -9,6 +10,11 @@ export declare const confirmEmailschema: {
     body: z.ZodObject<{
         email: z.ZodEmail;
         otp: z.ZodString;
+    }, z.core.$strict>;
+};
+export declare const logOutschema: {
+    body: z.ZodObject<{
+        flag: z.ZodEnum<typeof logOutTypeEnum>;
     }, z.core.$strict>;
 };
 export declare const signUpschema: {

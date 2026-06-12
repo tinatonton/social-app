@@ -9,6 +9,9 @@ import { globalErrorHandler, NotFoundException } from "./utils/response/error.re
 import { corsOptions } from "./utils/cors/cors.utils";
 import { PORT } from "./config/config.service";
 import connectDB from "./db/connection";
+import { redisConnection } from "./db/redis.connection";
+import { userModel, userSchema } from "./db/user.model";
+import { userRepository } from "./db/repositories/user.repo";
 
 
 
@@ -20,10 +23,19 @@ app.get("/", (req:Request, res:Response, next:NextFunction) => {
     return res .status(200) .json({ message: "Hello, World!" });
 });
 await connectDB()
+await redisConnection()
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/comments", commentsRouter);
 app.use("/api/users", userRouter);
+const userRepo=new userRepository(userModel)
+const user= await userRepo.insertMany({data:[{
+    username:"tina gerges",
+    email:`${Date.now()}@gmail.com`,
+    password:"tina@12345",
+    phone:"0125454544"
+
+}]})
 app.use(globalErrorHandler);
 
 app.use("/*dummy", (req:Request, res:Response, next:NextFunction) => {

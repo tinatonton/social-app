@@ -1,6 +1,6 @@
 import { HydratedDocument, Schema } from "mongoose";
 import mongoose from "mongoose";
-import { GenderEnum, RoleEnum } from "../utils/enums/auth.enum";
+import { GenderEnum, ProviderEnum, RoleEnum } from "../utils/enums/auth.enum";
 export interface IUser {
     firstName: string;
     lastName: string;
@@ -10,13 +10,16 @@ export interface IUser {
     confirmEmail?: Date;
     password: string;
     resetPasswordOtp?: string;
-    phone?: string;
+    phone: string;
     address?: string;
+    provider?: ProviderEnum;
     gender: GenderEnum;
     role?: RoleEnum;
     createdAt: Date;
     updatedAt?: Date;
     confirmedAt: Date;
+    changeCredentialsTime: Date;
+    profilePicture?: string;
 }
 export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, any, any, any, IUser>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, IUser, mongoose.Document<unknown, {}, IUser, {
     id: string;
@@ -99,7 +102,7 @@ export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, a
     }, "id"> & {
         id: string;
     }>;
-    phone?: mongoose.SchemaDefinitionProperty<string | undefined, IUser, mongoose.Document<unknown, {}, IUser, {
+    phone?: mongoose.SchemaDefinitionProperty<string, IUser, mongoose.Document<unknown, {}, IUser, {
         id: string;
     }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
         _id: mongoose.Types.ObjectId;
@@ -109,6 +112,15 @@ export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, a
         id: string;
     }>;
     address?: mongoose.SchemaDefinitionProperty<string | undefined, IUser, mongoose.Document<unknown, {}, IUser, {
+        id: string;
+    }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
+        _id: mongoose.Types.ObjectId;
+    } & {
+        __v: number;
+    }, "id"> & {
+        id: string;
+    }>;
+    provider?: mongoose.SchemaDefinitionProperty<ProviderEnum | undefined, IUser, mongoose.Document<unknown, {}, IUser, {
         id: string;
     }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
         _id: mongoose.Types.ObjectId;
@@ -154,6 +166,24 @@ export declare const userSchema: Schema<IUser, mongoose.Model<IUser, any, any, a
         id: string;
     }>;
     confirmedAt?: mongoose.SchemaDefinitionProperty<Date, IUser, mongoose.Document<unknown, {}, IUser, {
+        id: string;
+    }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
+        _id: mongoose.Types.ObjectId;
+    } & {
+        __v: number;
+    }, "id"> & {
+        id: string;
+    }>;
+    changeCredentialsTime?: mongoose.SchemaDefinitionProperty<Date, IUser, mongoose.Document<unknown, {}, IUser, {
+        id: string;
+    }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
+        _id: mongoose.Types.ObjectId;
+    } & {
+        __v: number;
+    }, "id"> & {
+        id: string;
+    }>;
+    profilePicture?: mongoose.SchemaDefinitionProperty<string | undefined, IUser, mongoose.Document<unknown, {}, IUser, {
         id: string;
     }, mongoose.DefaultSchemaOptions> & Omit<IUser & {
         _id: mongoose.Types.ObjectId;

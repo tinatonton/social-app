@@ -1,6 +1,6 @@
 // base repository
 
-import { Model, ProjectionType, QueryFilter, QueryOptions, PopulateOptions, CreateOptions, HydratedDocument, UpdateQuery, MongooseUpdateQueryOptions, UpdateWriteOpResult } from "mongoose";
+import { Model, ProjectionType, QueryFilter, QueryOptions, PopulateOptions, CreateOptions, HydratedDocument, UpdateQuery, MongooseUpdateQueryOptions, UpdateWriteOpResult, AnyKeys } from "mongoose";
 
 export abstract class DatabaseRepository<TDocument> {
     constructor(protected readonly model:Model<TDocument>) {}
@@ -45,4 +45,14 @@ async updateOne({filter,update,options}:{
 }):Promise<UpdateWriteOpResult>{
     return await this.model.updateOne(filter,{...update,$inc:{_v:1}},options);
 }
+
+async insertMany({
+    data,
+    }:{
+    data:AnyKeys<TDocument>[];
+    
+}){
+return await this.model.create(data as any)
+}
+
 }
